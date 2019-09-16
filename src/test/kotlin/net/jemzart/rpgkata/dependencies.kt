@@ -1,4 +1,4 @@
-package net.jemzart.rpgkata.behaviour
+package net.jemzart.rpgkata
 
 import net.jemzart.rpgkata.actions.CreateCharacter
 import net.jemzart.rpgkata.actions.DealDamageToCharacter

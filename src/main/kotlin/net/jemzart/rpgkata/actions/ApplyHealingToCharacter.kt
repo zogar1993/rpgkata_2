@@ -4,6 +4,8 @@ import net.jemzart.rpgkata.models.character.Characters
 
 class ApplyHealingToCharacter(private val characters: Characters) {
 	operator fun invoke(healerName: String, targetName: String, amount: Int) {
+		if (healerName != targetName) return
+
 		val target = characters.search(targetName)
 
 		target.receiveHealing(amount)

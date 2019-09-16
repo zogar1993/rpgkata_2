@@ -1,7 +1,7 @@
-package net.jemzart.rpgkata.behaviour.steps
+package net.jemzart.rpgkata.steps
 
 import cucumber.api.java.en.When
-import net.jemzart.rpgkata.behaviour.applyHealingToCharacter
+import net.jemzart.rpgkata.applyHealingToCharacter
 
 class HealingSteps {
     @When("character {string} heals character {string} for a value of {int}")

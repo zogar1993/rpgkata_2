@@ -1,7 +1,7 @@
-package net.jemzart.rpgkata.behaviour.steps
+package net.jemzart.rpgkata.steps
 
 import cucumber.api.java.en.Given
-import net.jemzart.rpgkata.behaviour.*
+import net.jemzart.rpgkata.characters
 
 class GameSteps {
 	@Given("a new game starts")

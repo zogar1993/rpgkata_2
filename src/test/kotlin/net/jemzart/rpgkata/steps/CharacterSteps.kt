@@ -1,8 +1,10 @@
-package net.jemzart.rpgkata.behaviour.steps
+package net.jemzart.rpgkata.steps
 
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
-import net.jemzart.rpgkata.behaviour.*
+import net.jemzart.rpgkata.characters
+import net.jemzart.rpgkata.createCharacter
+import net.jemzart.rpgkata.getCharacter
 import net.jemzart.rpgkata.models.character.GameCharacter
 import org.amshove.kluent.shouldBeFalse
 import org.amshove.kluent.shouldBeTrue
@@ -30,6 +32,14 @@ class CharacterSteps {
 		getCharacter(name).health.shouldEqual(amount)
 	}
 
+	@Given("character {string} is level {int}")
+	fun `character {name} is level {level}`(name: String, level: Int) {
+		val character = characters.search(name)
+		character.level = level
+		characters.put(character)
+		getCharacter(name).level.shouldEqual(level)
+	}
+
 	@Then("character {string} should be level {int}")
 	fun `{name} should be level {level}`(name: String, level: Int) {
 		val character = getCharacter(name)
@@ -40,6 +50,12 @@ class CharacterSteps {
 	fun `{name} should have {health} health`(name: String, health: Int) {
 		val character = getCharacter(name)
 		character.health.shouldEqual(health)
+	}
+
+	@Then("character {string} should be unharmed")
+	fun `character {string} should be unharmed`(name: String) {
+		val character = getCharacter(name)
+		character.health.shouldEqual(GameCharacter.INITIAL_HEALTH)
 	}
 
 	@Then("character {string} should be alive")
