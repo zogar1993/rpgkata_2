@@ -14,12 +14,16 @@ class DamageSteps {
 		dealDamageToCharacter(attacker, target, amount)
 	}
 
-	@Then("character {string} should have received {int}% of {int} damage")
-	fun `character {name} should have received {percentage}% of {damage} damage`
-				(name: String, percentage: Double, damage: Int) {
+	@When("character {string} deals damage to character {string}")
+	fun `character {attacker} deals damage to character {target}`
+				(attacker: String, target: String) {
+		dealDamageToCharacter(attacker, target, 100)
+	}
+
+	@Then("character {string} should have received {int} damage")
+	fun `character {name} should have received {damage} damage`
+				(name: String, damage: Int) {
 		val character = characters.search(name)
-		val totalDamage = (percentage / 100) * damage
-		val health = GameCharacter.INITIAL_HEALTH - totalDamage
-		character.health.shouldEqual(health.toInt())
+		character.health.shouldEqual(GameCharacter.INITIAL_HEALTH - damage)
 	}
 }

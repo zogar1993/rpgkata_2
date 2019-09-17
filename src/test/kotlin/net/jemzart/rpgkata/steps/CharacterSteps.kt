@@ -7,6 +7,7 @@ import net.jemzart.rpgkata.createCharacter
 import net.jemzart.rpgkata.getCharacter
 import net.jemzart.rpgkata.models.character.GameCharacter
 import org.amshove.kluent.shouldBeFalse
+import org.amshove.kluent.shouldBeLessThan
 import org.amshove.kluent.shouldBeTrue
 import org.amshove.kluent.shouldEqual
 
@@ -50,6 +51,12 @@ class CharacterSteps {
 	fun `{name} should have {health} health`(name: String, health: Int) {
 		val character = getCharacter(name)
 		character.health.shouldEqual(health)
+	}
+
+	@Then("character {string} should be harmed")
+	fun `character {string} should be harmed`(name: String) {
+		val character = getCharacter(name)
+		character.health.shouldBeLessThan(GameCharacter.INITIAL_HEALTH)
 	}
 
 	@Then("character {string} should be unharmed")

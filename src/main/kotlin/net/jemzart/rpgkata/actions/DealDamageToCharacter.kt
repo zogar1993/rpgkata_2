@@ -2,13 +2,17 @@ package net.jemzart.rpgkata.actions
 
 import net.jemzart.rpgkata.models.character.Characters
 import net.jemzart.rpgkata.models.character.GameCharacter
+import net.jemzart.rpgkata.models.terrain.Terrain
 
-class DealDamageToCharacter(private val characters: Characters) {
+class DealDamageToCharacter(
+	private val characters: Characters,
+	private val terrain: Terrain) {
 	operator fun invoke(attackerName: String, targetName: String, amount: Int) {
-		if (attackerName == targetName) return
-
 		val attacker = characters.search(attackerName)
 		val target = characters.search(targetName)
+
+		if (attacker == target) return
+		if (!attacker.reaches(target)) return
 
 		val levelMultiplier = levelDamageMultiplier(levelDifference(attacker, target))
 		val total = amount * levelMultiplier
@@ -16,6 +20,9 @@ class DealDamageToCharacter(private val characters: Characters) {
 
 		characters.put(target)
 	}
+
+	private fun GameCharacter.reaches(target: GameCharacter) : Boolean =
+		this.range.max >= terrain.distanceOfCharacters(this, target)
 
 	private fun levelDifference(attacker: GameCharacter, target: GameCharacter): Int {
 		return attacker.level - target.level

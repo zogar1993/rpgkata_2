@@ -1,7 +1,8 @@
 package net.jemzart.rpgkata.models.character
 
 class GameCharacter constructor(val name: String) {
-	var level = INITIAL_LEVEL
+	var range: RangeType = RangeType.Melee
+    var level = INITIAL_LEVEL
 	var health: Int = INITIAL_HEALTH; private set
 	val alive get() = health > NO_HEALTH
 

@@ -12,5 +12,6 @@ class GetCharacter(private val characters: Characters) {
 		val level = character.level
 		val health = character.health
 		val alive = character.alive
+		val range = character.range.value
 	}
 }
