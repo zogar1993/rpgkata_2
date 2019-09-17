@@ -9,7 +9,8 @@ class GetCharacter(private val characters: Characters) {
 	}
 
 	class GameCharacter(character: net.jemzart.rpgkata.models.character.GameCharacter){
-		val level = character.level
+        val factions = character.factions
+        val level = character.level
 		val health = character.health
 		val alive = character.alive
 		val range = character.range.value

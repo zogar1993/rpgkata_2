@@ -8,3 +8,4 @@ Feature: Character Creation
     Then character "linuar" should be level 1
     Then character "linuar" should have 1000 health
     Then character "linuar" should be alive
+    Then character "linuar" should be a member of no faction

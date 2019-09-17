@@ -21,7 +21,13 @@ Feature: Characters may heal characters
     When character "linuar" heals character "linuar" for a value of 200
     Then character "linuar" should have 1000 health
 
-  Scenario: a character may not heal another character
+  Scenario: a character may not heal another non ally character
     Given character "carrie" has 900 health
+    When character "linuar" heals character "carrie" for a value of 100
+    Then character "carrie" should have 900 health
+
+  Scenario: a character may heal an ally
+    Given character "linuar" and character "carrie" are allies
+    Given character "carrie" has 800 health
     When character "linuar" heals character "carrie" for a value of 100
     Then character "carrie" should have 900 health

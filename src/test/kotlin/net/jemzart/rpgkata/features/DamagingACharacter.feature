@@ -23,9 +23,13 @@ Feature: Characters may deal damage to characters
     Then character "carrie" should be dead
 
   Scenario: a character may not deal damage to herself
-    Given character "linuar" has 1000 health
-    When character "linuar" deals 100 damage to character "linuar"
+    When character "linuar" deals damage to character "linuar"
     Then character "linuar" should be unharmed
+
+  Scenario: a character may not deal damage to an ally
+    Given character "linuar" and character "carrie" are allies
+    When character "linuar" deals damage to character "carrie"
+    Then character "carrie" should be unharmed
 
   Scenario Outline: a character deals normal damage to targets with a level difference of less than 5 (<attacker_level>-<target_level>)
     Given character "linuar" is level <attacker_level>
